@@ -12,7 +12,7 @@ app.use('/upload', uploadRouter);
 app.set('view engine', 'ejs');
 
 // Call the splitter
-Splitter.splitImage('./img/underwater.png', 2, 2);
+// Splitter.splitImage('./img/underwater.png', 2, 2);
 
 
 app.listen(PORT, () => {console.log(`Listening on port ${PORT}`)});
