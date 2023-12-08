@@ -5,7 +5,7 @@ async function getMetaData(imagePath) {
     return metadata;
 }
 
-async function splitImage(imagePath, nx, ny) {
+async function splitImage(imagePath, imageName, nx, ny) {
     // Get the width and height of the image
     const metadata = await getMetaData(imagePath);
     const width = metadata.width;
@@ -16,15 +16,19 @@ async function splitImage(imagePath, nx, ny) {
     let topOffset = 0;
     let leftOffset = 0;
     let count = 0;
+    // output data
+    let outputImagesPath = [];
     
     while(topOffset != height && leftOffset != width) {
+        const imgPath = `./output/${imageName}-${count}.png`;
+        outputImagesPath.push(imgPath);
         await sharp(imagePath)
         .extract(
             {
                 left: leftOffset, top: topOffset, width: pixelX, height:pixelY
             }
         )
-        .toFile(`./output/underwater-${count}.png`);        
+        .toFile(imgPath);      
 
         leftOffset += pixelX;
         // if we reach edge of the image, go to the next row
@@ -34,8 +38,11 @@ async function splitImage(imagePath, nx, ny) {
         }
         count++;
     }
+
+    return outputImagesPath;
 }
 
 module.exports = {
     splitImage,
+    getMetaData
 }
