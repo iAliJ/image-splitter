@@ -38,4 +38,5 @@ async function splitImage(imagePath, nx, ny) {
 
 module.exports = {
     splitImage,
+    getMetaData
 }
