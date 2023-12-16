@@ -3,3 +3,5 @@
 *.png
 *.jpg
 *gif
+
+/public/data/uploads
