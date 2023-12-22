@@ -6,9 +6,11 @@ exports.splitter_uploadImage_post = async (req, res) => {
     // upload image to the server, then give back the image unique id
     console.log(req.file.path);
     console.log('Uploading image to the server...');
+    const x = req.body.xdim;
+    const y = req.body.ydim;
     // Send the file to the splitter
     try {
-        const images = await Splitter.splitImage(req.file.path, req.file.filename, 2, 2);
+        const images = await Splitter.splitImage(req.file.path, req.file.filename, x, y);
         const result = await download.archiveData(images, req.file.filename);
         const rootPath = path.resolve(__dirname, '..', '..');
         const outputPath = path.join(rootPath, 'output');
