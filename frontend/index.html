@@ -14,8 +14,12 @@
                     <h2>Select an image to split</h2>
                 </div>
                 <div>
-                    <form class="mt-5" action="http://localhost:3001/upload" method="post" enctype="multipart/form-data">
+                    <form class="mt-5" action="http://localhost:3002/upload" method="post" enctype="multipart/form-data">
                         <input class="form-control" type="file" id="image" name="image" accept="image/png, image/jpeg" />
+                        <label for="xdim">Splits on X</label>
+                        <input type="number" name="xdim"/>
+                        <label for="xdim">Splits on Y</label>
+                        <input type="number" name="ydim"/>
                         <button class="btn btn-primary mt-3 px-3">Split Image</button>
                     </form>
                 </div>                
