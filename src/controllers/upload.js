@@ -11,11 +11,11 @@ exports.splitter_uploadImage_post = async (req, res) => {
     // Send the file to the splitter
     try {
         const images = await Splitter.splitImage(req.file.path, req.file.filename, x, y);
-        const result = await download.archiveData(images, req.file.filename);
+        await download.archiveData(images, req.file.filename);
         const rootPath = path.resolve(__dirname, '..', '..');
         const outputPath = path.join(rootPath, 'output');
-        const filePath = path.join(outputPath, req.file.filename + '.zip');
-        await res.sendFile(filePath);
+        const filePath = path.join(outputPath,'archive-' + req.file.filename + '.zip');
+        await res.download(filePath);
     }
     catch (err) {
         console.log(err);
