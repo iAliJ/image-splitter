@@ -15,7 +15,9 @@ exports.splitter_uploadImage_post = async (req, res) => {
         const rootPath = path.resolve(__dirname, '..', '..');
         const outputPath = path.join(rootPath, 'output');
         const filePath = path.join(outputPath,'archive-' + req.file.filename + '.zip');
-        await res.download(filePath);
+        // I need help with this part, how to download the file
+        res.setHeader('Content-type','application/zip');
+        await res.send(filePath);
     }
     catch (err) {
         console.log(err);
